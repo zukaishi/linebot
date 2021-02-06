@@ -20,6 +20,7 @@ func hello(ctx context.Context, request events.APIGatewayProxyRequest) (events.A
 	for key, value := range request.Headers {
 		fmt.Printf("    %s: %s\n", key, value)
 	}
+	fmt.Printf("id = %s.\n", request.QueryStringParameters["id"])
 
 	return events.APIGatewayProxyResponse{Body: request.Body, StatusCode: 200}, nil
 }
