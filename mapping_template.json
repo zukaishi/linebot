@@ -1,7 +1,0 @@
-{
-    "body": "aaaaaaaaaaaaaaaaaaaaa",
-    "queryStringParameters": {
-        #foreach($key in $input.params().querystring.keySet())
-            #if($foreach.index > 0),#end"$key":"$input.params().querystring.get($key)"#end
-    }
-}
