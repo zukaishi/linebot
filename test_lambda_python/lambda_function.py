@@ -3,6 +3,9 @@ from linebot import (LineBotApi, WebhookHandler)
 from linebot.models import (MessageEvent, TextMessage, TextSendMessage,)
 from linebot.exceptions import (LineBotApiError, InvalidSignatureError)
 
+line_bot_api = LineBotApi(os.environ["LINE_CHANNEL_ACCESS_TOKEN"])
+handler = WebhookHandler(os.environ["LINE_CHANNEL_SECRET"])
+
 def lambda_handler(event, context):
     print(event)
     signature = event["headers"]["x-line-signature"]
@@ -10,6 +13,8 @@ def lambda_handler(event, context):
 
     ok_json = os.environ["ok_json"]
     error_json = os.environ["error_json"]
+    print(ok_json)
+    print(error_json)
 
     @handler.add(MessageEvent, message=TextMessage)
     def message(line_event):
