@@ -4,8 +4,7 @@ from linebot.models import (MessageEvent, TextMessage, TextSendMessage,)
 from linebot.exceptions import (LineBotApiError, InvalidSignatureError)
 
 def lambda_handler(event, context):
-    print(event)
-    signature = event["headers"]["x-Line-Signature"]
+    signature = event["headers"]["x-line-signature"]
     body = event["body"]
 
     ok_json = os.environ["ok_json"]
