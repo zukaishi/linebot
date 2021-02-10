@@ -1,4 +1,5 @@
-import os, sys
+import os, sys, json
+import requests
 from linebot import (LineBotApi, WebhookHandler)
 from linebot.models import (MessageEvent, TextMessage, TextSendMessage,)
 from linebot.exceptions import (LineBotApiError, InvalidSignatureError)
@@ -13,9 +14,17 @@ def lambda_handler(event, context):
 
     ok_json = os.environ["ok_json"]
     error_json = os.environ["error_json"]
-    print(ok_json)
-    print(error_json)
 
+    # weather
+    url = "https://community-open-weather-map.p.rapidapi.com/weather"
+    querystring = {"q":"Tokyo,jp","units":"metric","lang":"ja"}
+    headers = {
+        'x-rapidapi-key': os.environ["X_RAPIDAPI_KEY"],
+        'x-rapidapi-host': os.environ["X_RAPIDAPI_HOST"]
+    }
+    response = requests.request("GET", url, headers=headers, params=querystring)
+    print(response.text)
+    
     @handler.add(MessageEvent, message=TextMessage)
     def message(line_event):
         text = line_event.message.text
