@@ -1,4 +1,4 @@
-import os, sys, json, datetime
+import os, sys, json, datetime,time 
 import requests
 from linebot import (LineBotApi, WebhookHandler)
 from linebot.models import (MessageEvent, TextMessage, TextSendMessage,)
@@ -24,7 +24,7 @@ def lambda_handler(event, context):
 
     def getWeather():
         url = "https://community-open-weather-map.p.rapidapi.com/forecast"
-        querystring = {"q":"Kyoto,jp","units":"metric","lang":"ja"}
+        querystring = {"q":"Tokyo,jp","units":"metric","lang":"ja"}
         headers = {
             'x-rapidapi-key': os.environ["X_RAPIDAPI_KEY"],
             'x-rapidapi-host': os.environ["X_RAPIDAPI_HOST"]
@@ -32,7 +32,8 @@ def lambda_handler(event, context):
         response = requests.request("GET", url, headers=headers, params=querystring)
         print(response.text)
         forecastData = json.loads(response.text)
-        
+        print(forecastData)
+
         if not ('list' in forecastData):
             print('error')
             return
@@ -40,20 +41,18 @@ def lambda_handler(event, context):
         # 通知内容作成
         words = '【今日の天気】\n'
         beforeDate = ''
-        print(forecastData['list'][0])
         for item in forecastData['list']:
             forecastDatetime = timezone('Asia/Tokyo').localize(datetime.datetime.fromtimestamp(item['dt']))
 
-            # 本日分のみ通知対象とする
-            if beforeDate != '' and beforeDate != forecastDatetime.strftime('%Y-%m-%d'):
-                break
-            else:
+            if item['dt'] >= time.time() and item['dt'] <= (time.time()  + 86400):
                 beforeDate = forecastDatetime.strftime('%Y-%m-%d')
+            else:
+                break
 
             weatherDescription = item['weather'][0]['description']
             emoji = ''
             # 絵文字の分岐は適当
-            if '曇' in weatherDescription:
+            if '曇' in weatherDescription or '雲' in weatherDescription:
                 emoji = '\uDBC0\uDCAC'
             elif '雪' in weatherDescription:
                 emoji = '\uDBC0\uDCAB'
