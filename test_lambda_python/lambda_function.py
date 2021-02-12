@@ -40,13 +40,11 @@ def lambda_handler(event, context):
         
         # 通知内容作成
         words = '【今日の天気】\n'
-        beforeDate = ''
+        # JST = timezone(timedelta(hours=+9), 'JST')
         for item in forecastData['list']:
             forecastDatetime = timezone('Asia/Tokyo').localize(datetime.datetime.fromtimestamp(item['dt']))
 
-            if item['dt'] >= time.time() and item['dt'] <= (time.time()  + 86400):
-                beforeDate = forecastDatetime.strftime('%Y-%m-%d')
-            else:
+            if item['dt'] < time.time() or item['dt'] > (time.time()  + 86400):
                 break
 
             weatherDescription = item['weather'][0]['description']
@@ -65,7 +63,7 @@ def lambda_handler(event, context):
             rainfall = 0
             if 'rain' in item and '3h' in item['rain']:
                 rainfall = item['rain']['3h']
-            words += '\n{0}\n天気:{1} {2}\n気温(℃):{3}\n雨量(mm):{4}\n'.format(forecastDatetime.strftime('%Y-%m-%d %H:%M'), emoji, weatherDescription, temperature, rainfall)
+            words += '\n{0}\n天気:{1} {2}\n気温(℃):{3}\n雨量(mm):{4}\n'.format(item['dt'], emoji, weatherDescription, temperature, rainfall)
         
         return words
 
