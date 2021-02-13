@@ -38,8 +38,10 @@ def lambda_handler(event, context):
 
             weatherDescription = item['weather'][0]['description']
             emoji = ''
-            # 絵文字の分岐は適当
-            if '曇' in weatherDescription or '雲' in weatherDescription:
+            
+            if '薄い雲' in weatherDescription:
+                emoji = '\uDBC0\uDCAC\uDBC0\uDCA9'
+            elif '曇' in weatherDescription or '雲' in weatherDescription:
                 emoji = '\uDBC0\uDCAC'
             elif '雪' in weatherDescription:
                 emoji = '\uDBC0\uDCAB'
