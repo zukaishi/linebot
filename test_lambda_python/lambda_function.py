@@ -30,7 +30,7 @@ def lambda_handler(event, context):
             return
         
         # 通知内容作成
-        words = '【今日の天気】\n'
+        words = 'この後の天気はこんな感じだかっぱ\n'
         JST = timezone(timedelta(hours=+9), 'JST')
         for item in forecastData['list']:
             if item['dt'] < time.time() or item['dt'] > (time.time()  + 86400):
@@ -60,7 +60,9 @@ def lambda_handler(event, context):
 
     @handler.add(MessageEvent, message=TextMessage)
     def message(line_event):
-        text = getWeather()
+        text = line_event.message.text
+        if '天気' in line_event.message.text:
+            text = getWeather()
         line_bot_api.reply_message(line_event.reply_token, TextSendMessage(text=text)) 
 
     print(event)
@@ -68,6 +70,7 @@ def lambda_handler(event, context):
         signature = event["headers"]["x-line-signature"]
         body = event["body"]
     else:
+        # LINE以外からの起動時テストとして使用する
         text = getWeather()
         return ok_json
 
