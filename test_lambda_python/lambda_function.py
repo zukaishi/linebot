@@ -1,3 +1,4 @@
+import boto3
 import os, sys, json,time,datetime
 import requests
 from linebot import (LineBotApi, WebhookHandler)
@@ -79,7 +80,8 @@ def lambda_handler(event, context):
           "mode":"weather",
           "status":"1"
         }
-#            dynamo = boto3.client('dynamodb')
+        dynamo = boto3.client('dynamodb')
+        print(item)
 #            dynamo.put_item(TableName=table_name, Item=item)
 
         return ok_json
