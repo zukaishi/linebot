@@ -72,6 +72,16 @@ def lambda_handler(event, context):
     else:
         # LINE以外からの起動時テストとして使用する
         text = getWeather()
+
+        table_name = "kappa_mode"
+        item = {
+          "user":"aaaaaa",
+          "mode":"weather",
+          "status":"1"
+        }
+#            dynamo = boto3.client('dynamodb')
+#            dynamo.put_item(TableName=table_name, Item=item)
+
         return ok_json
 
     try:
