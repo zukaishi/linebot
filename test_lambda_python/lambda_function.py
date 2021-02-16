@@ -72,17 +72,20 @@ def lambda_handler(event, context):
         body = event["body"]
     else:
         # LINE以外からの起動時テストとして使用する
-        text = getWeather()
+        # text = getWeather()
 
-        table_name = "kappa_mode"
-        item = {
-          "user":"aaaaaa",
-          "mode":"weather",
-          "status":"1"
-        }
-        dynamo = boto3.client('dynamodb')
-        print(item)
-#            dynamo.put_item(TableName=table_name, Item=item)
+        dynamoDB = boto3.resource("dynamodb")
+        table = dynamoDB.Table("kappa_mode")
+
+        print("### put start.")
+        table.put_item(
+            Item = {
+                "user": "ccccc",
+                "mode": "weather",
+                "status": 1
+            }
+        )
+        print("### put end.")
 
         return ok_json
 
