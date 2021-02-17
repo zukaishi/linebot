@@ -77,12 +77,18 @@ def lambda_handler(event, context):
         dynamoDB = boto3.resource("dynamodb")
         table = dynamoDB.Table("kappa_mode")
 
+
+        print("### get start.")
+        response = table.get_item(Key={'user': 'ccccc', 'mode': 'weather1'})
+        print(response)
+        print("### get end.")
+
         print("### put start.")
         table.put_item(
             Item = {
                 "user": "ccccc",
-                "mode": "weather",
-                "status": 1
+                "mode": "weather1",
+                "status": 2
             }
         )
         print("### put end.")
