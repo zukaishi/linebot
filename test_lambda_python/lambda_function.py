@@ -1,6 +1,7 @@
 import boto3
 import os, sys, json,time,datetime
 import requests
+import pprint
 from linebot import (LineBotApi, WebhookHandler)
 from linebot.models import (MessageEvent, TextMessage, TextSendMessage,)
 from linebot.exceptions import (LineBotApiError, InvalidSignatureError)
@@ -67,16 +68,17 @@ def lambda_handler(event, context):
         line_bot_api.reply_message(line_event.reply_token, TextSendMessage(text=text)) 
 
     print(event)
+
+    dynamoDB = boto3.resource("dynamodb")
+    table = dynamoDB.Table("kappa_mode")
+
     if "headers" in event:
+        print(event["body"])
         signature = event["headers"]["x-line-signature"]
         body = event["body"]
     else:
         # LINE以外からの起動時テストとして使用する
         # text = getWeather()
-
-        dynamoDB = boto3.resource("dynamodb")
-        table = dynamoDB.Table("kappa_mode")
-
 
         print("### get start.")
         response = table.get_item(Key={'user': 'ccccc', 'mode': 'weather1'})
