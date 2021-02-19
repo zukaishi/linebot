@@ -76,7 +76,22 @@ def lambda_handler(event, context):
         signature = event["headers"]["x-line-signature"]
         body = event["body"]
         d = json.loads(event["body"])
-        print(d["events"][0]["source"]["userId"] )
+        user = d["events"][0]["source"]["userId"] 
+
+        print("### get start.")
+        response = table.get_item(Key={'user': user, 'mode': 'weather'})
+        print(response)
+        print("### get end.")
+
+        print("### put start.")
+        table.put_item(
+            Item = {
+                "user": user,
+                "mode": "weather",
+                "status": 1
+            }
+        )
+        print("### put end.")
     else:
         # LINE以外からの起動時テストとして使用する
         # text = getWeather()
