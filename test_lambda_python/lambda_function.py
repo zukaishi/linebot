@@ -73,9 +73,10 @@ def lambda_handler(event, context):
     table = dynamoDB.Table("kappa_mode")
 
     if "headers" in event:
-        print(event["body"])
         signature = event["headers"]["x-line-signature"]
         body = event["body"]
+        d = json.loads(event["body"])
+        print(d["events"][0]["source"]["userId"] )
     else:
         # LINE以外からの起動時テストとして使用する
         # text = getWeather()
