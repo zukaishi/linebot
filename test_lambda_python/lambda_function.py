@@ -84,11 +84,17 @@ def lambda_handler(event, context):
         print("### get end.")
 
         print("### put start.")
+        item = {
+            "user": user,
+            "mode": "weather",
+            "status": 1
+        }
         table.put_item(
             Item = {
                 "user": user,
                 "mode": "weather",
-                "status": 1
+                "status": 2,
+                "test": 2
             }
         )
         print("### put end.")
@@ -97,16 +103,20 @@ def lambda_handler(event, context):
         # text = getWeather()
 
         print("### get start.")
-        response = table.get_item(Key={'user': 'ccccc', 'mode': 'weather1'})
+        response = table.get_item(Key={'user': 'ccccc', 'mode': 'weather'})
         print(response)
         print("### get end.")
 
         print("### put start.")
+        dt_now = datetime.datetime.now()
+        print(dt_now)
+        print(dt_now.strftime('%Y/%m/%d %H:%M:%S'))
         table.put_item(
             Item = {
                 "user": "ccccc",
-                "mode": "weather1",
-                "status": 2
+                "mode": "weather",
+                "status": 1,
+                "time": dt_now.strftime('%Y/%m/%d %H:%M:%S')
             }
         )
         print("### put end.")
