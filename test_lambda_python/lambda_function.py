@@ -84,15 +84,12 @@ def lambda_handler(event, context):
 
         print("### get start.")
         response = table.get_item(Key={'user': user, 'mode': 'weather'})
-        print(response)
+        if "Item" in response:
+            item = response["Item"]
+            print(item["status"])
         print("### get end.")
 
         print("### put start.")
-        item = {
-            "user": user,
-            "mode": "weather",
-            "status": 1
-        }
         table.put_item(
             Item = {
                 "user": user,
@@ -108,7 +105,9 @@ def lambda_handler(event, context):
 
         print("### get start.")
         response = table.get_item(Key={'user': 'ccccc', 'mode': 'weather'})
-        print(response)
+        if "Item" in response:
+            item = response["Item"]
+            print(item["status"])
         print("### get end.")
 
         print("### put start.")
