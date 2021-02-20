@@ -72,6 +72,10 @@ def lambda_handler(event, context):
     dynamoDB = boto3.resource("dynamodb")
     table = dynamoDB.Table("kappa_mode")
 
+    dt_now = datetime.datetime.now()
+    print(dt_now)
+    last_time = dt_now.strftime('%Y/%m/%d %H:%M:%S')
+
     if "headers" in event:
         signature = event["headers"]["x-line-signature"]
         body = event["body"]
@@ -94,7 +98,7 @@ def lambda_handler(event, context):
                 "user": user,
                 "mode": "weather",
                 "status": 2,
-                "test": 2
+                "last_time": last_time
             }
         )
         print("### put end.")
@@ -108,15 +112,12 @@ def lambda_handler(event, context):
         print("### get end.")
 
         print("### put start.")
-        dt_now = datetime.datetime.now()
-        print(dt_now)
-        print(dt_now.strftime('%Y/%m/%d %H:%M:%S'))
         table.put_item(
             Item = {
                 "user": "ccccc",
                 "mode": "weather",
                 "status": 1,
-                "time": dt_now.strftime('%Y/%m/%d %H:%M:%S')
+                "last_time": last_time
             }
         )
         print("### put end.")
