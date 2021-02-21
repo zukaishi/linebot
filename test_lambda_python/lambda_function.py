@@ -82,23 +82,27 @@ def lambda_handler(event, context):
         d = json.loads(event["body"])
         user = d["events"][0]["source"]["userId"] 
 
-        print("### get start.")
         response = table.get_item(Key={'user': user, 'mode': 'weather'})
         if "Item" in response:
             item = response["Item"]
-            print(item["status"])
-        print("### get end.")
-
-        print("### put start.")
-        table.put_item(
-            Item = {
-                "user": user,
-                "mode": "weather",
-                "status": 2,
-                "last_time": last_time
-            }
-        )
-        print("### put end.")
+            if item["status"] == 1:
+                 table.put_item(
+                    Item = {
+                        "user": user,
+                        "mode": "weather",
+                        "status": 2,
+                        "last_time": last_time
+                    }
+                )
+        else:
+            table.put_item(
+                Item = {
+                    "user": user,
+                    "mode": "weather",
+                    "status": 1,
+                    "last_time": last_time
+                }
+            )
     else:
         # LINE以外からの起動時テストとして使用する
         # text = getWeather()
