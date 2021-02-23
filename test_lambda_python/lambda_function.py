@@ -69,71 +69,55 @@ def lambda_handler(event, context):
 
     print(event)
 
-    dynamoDB = boto3.resource("dynamodb")
-    table = dynamoDB.Table("kappa_mode")
 
-    dt_now = datetime.datetime.now()
-    print(dt_now)
-    last_time = dt_now.strftime('%Y/%m/%d %H:%M:%S')
-
+    mode = 'weather'
+    body = ''
+    # ユーザ決定
     if "headers" in event:
         signature = event["headers"]["x-line-signature"]
         body = event["body"]
-        d = json.loads(event["body"])
+        d = json.loads(body)
         user = d["events"][0]["source"]["userId"] 
+    else:
+        user = 'test'
 
-        response = table.get_item(Key={'user': user, 'mode': 'weather'})
-        if "Item" in response:
-            item = response["Item"]
-            if item["status"] == 1:
-                 table.put_item(
-                    Item = {
-                        "user": user,
-                        "mode": "weather",
-                        "status": 2,
-                        "last_time": last_time
-                    }
-                )
-        else:
-            table.put_item(
+    dynamoDB = boto3.resource("dynamodb")
+    table = dynamoDB.Table("kappa_mode")
+    dt_now = datetime.datetime.now()
+    last_time = dt_now.strftime('%Y/%m/%d %H:%M:%S')
+
+    response = table.get_item(
+        Key={'user': user, 'mode': mode}
+    )
+    if "Item" in response:
+        item = response["Item"]
+        if item["status"] == 1:
+             table.put_item(
                 Item = {
                     "user": user,
-                    "mode": "weather",
-                    "status": 1,
+                    "mode": mode,
+                    "status": 2,
                     "last_time": last_time
                 }
             )
     else:
-        # LINE以外からの起動時テストとして使用する
-        # text = getWeather()
-
-        print("### get start.")
-        response = table.get_item(Key={'user': 'ccccc', 'mode': 'weather'})
-        if "Item" in response:
-            item = response["Item"]
-            print(item["status"])
-        print("### get end.")
-
-        print("### put start.")
         table.put_item(
             Item = {
-                "user": "ccccc",
-                "mode": "weather",
+                "user": user,
+                "mode": mode,
                 "status": 1,
                 "last_time": last_time
             }
         )
-        print("### put end.")
 
-        return ok_json
-
-    try:
-        handler.handle(body, signature)
-    except LineBotApiError as e:
-        logger.error("Got exception from LINE Messaging API: %s\n" % e.message)
-        for m in e.error.details:
-            logger.error("  %s: %s" % (m.property, m.message))
-        return error_json
-    except InvalidSignatureError:
-        return error_json
+    if body:
+        try:
+            handler.handle(body, signature)
+        except LineBotApiError as e:
+            logger.error("Got exception from LINE Messaging API: %s\n" % e.message)
+            for m in e.error.details:
+                logger.error("  %s: %s" % (m.property, m.message))
+            return error_json
+        except InvalidSignatureError:
+            return error_json
     return ok_json
