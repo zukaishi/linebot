@@ -9,10 +9,11 @@ todo
 - unixtime [p]
 - todo_name
 - comment
-- routine_flag
 - start
 - start_alarm
 - end
 - end_alarm
+- routine_flag
+- delete_flag
 
 ## アーキテクト
