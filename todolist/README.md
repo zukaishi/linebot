@@ -5,7 +5,7 @@
 
 ## DB
 todo
-- mid <p>
+- mid [p]
 - unixtime <p>
 - todo_name
 - comment
