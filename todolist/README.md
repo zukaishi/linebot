@@ -17,3 +17,7 @@ todo_table
 - delete_flag
 
 ## アーキテクト
+
+## LINE Bot
+- https://developers.line.biz/console/　アクセス後ログイン
+- プロバイダの作成
