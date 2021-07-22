@@ -33,6 +33,12 @@ todo_table
 ## cloudformation
 ```
 $ aws cloudformation validate-template --template-body file:cloud_formation.yml 
+
 $ An error occurred (ValidationError) when calling the ValidateTemplate operation: Template format error: unsupported structure.
 ```
  
+```
+$ aws cloudformation validate-template --template-body file://cloud_formation.yml 
+
+$ An error occurred (ValidationError) when calling the ValidateTemplate operation: Template format error: At least one Resources member must be defined.
+```
