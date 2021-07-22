@@ -30,15 +30,29 @@ todo_table
 - https://developers.line.biz/console/　アクセス後ログイン
 - プロバイダの作成
 
-## cloudformation
+## cloudformationテンプレート検証
 ```
 $ aws cloudformation validate-template --template-body file:cloud_formation.yml 
 
-$ An error occurred (ValidationError) when calling the ValidateTemplate operation: Template format error: unsupported structure.
+An error occurred (ValidationError) when calling the ValidateTemplate operation: Template format error: unsupported structure.
 ```
  
 ```
 $ aws cloudformation validate-template --template-body file://cloud_formation.yml 
 
-$ An error occurred (ValidationError) when calling the ValidateTemplate operation: Template format error: At least one Resources member must be defined.
+An error occurred (ValidationError) when calling the ValidateTemplate operation: Template format error: At least one Resources member must be defined.
+```
+
+```
+$ aws cloudformation validate-template --template-body file://cloud_formation.yml 
+{
+    "Parameters": [
+        {
+            "ParameterKey": "TableName",
+            "NoEcho": false,
+            "Description": "DDB Table Name"
+        }
+    ],
+    "Description": "DynamoDB Create"
+}
 ```
