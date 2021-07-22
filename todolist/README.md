@@ -29,3 +29,10 @@ todo_table
 - <img width="520" alt="スクリーンショット 2021-07-21 6 09 25" src="https://user-images.githubusercontent.com/22611735/126395763-47ed2917-ff86-416a-83b4-997cbd1338e6.png">
 - https://developers.line.biz/console/　アクセス後ログイン
 - プロバイダの作成
+
+## cloudformation
+```
+$ aws cloudformation validate-template --template-body file:cloud_formation.yml 
+$ An error occurred (ValidationError) when calling the ValidateTemplate operation: Template format error: unsupported structure.
+```
+ 
