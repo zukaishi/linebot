@@ -32,27 +32,7 @@ todo_table
 
 ## cloudformationテンプレート検証
 ```
-$ aws cloudformation validate-template --template-body file:cloud_formation.yml 
-
-An error occurred (ValidationError) when calling the ValidateTemplate operation: Template format error: unsupported structure.
-```
- 
-```
-$ aws cloudformation validate-template --template-body file://cloud_formation.yml 
-
-An error occurred (ValidationError) when calling the ValidateTemplate operation: Template format error: At least one Resources member must be defined.
-```
-
-```
-$ aws cloudformation validate-template --template-body file://cloud_formation.yml 
-{
-    "Parameters": [
-        {
-            "ParameterKey": "TableName",
-            "NoEcho": false,
-            "Description": "DDB Table Name"
-        }
-    ],
-    "Description": "DynamoDB Create"
-}
+$ aws cloudformation validate-template  --template-body file:cloud_formation.yml 
+$ aws cloudformation create-stack      --stack-name sample  --template-body file://cloud_formation.yml 
+$ aws cloudformation update-stack      --stack-name sample  --template-body file://cloud_formation.yml
 ```
