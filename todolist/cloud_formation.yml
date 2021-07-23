@@ -1,4 +1,5 @@
 Resources:
   FirstS3Bucket:
     Type: "AWS::S3::Bucket"
-    Properties: {}
+    Properties: 
+      AccessControl: PublicRead
