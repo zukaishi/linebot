@@ -32,7 +32,7 @@ todo_table
 
 ## cloudformationテンプレート検証
 ```
-$ aws cloudformation validate-template  --template-body file:cloud_formation.yml 
+$ aws cloudformation validate-template --template-body file://cloud_formation.yml 
 $ aws cloudformation create-stack      --stack-name sample  --template-body file://cloud_formation.yml 
 $ aws cloudformation update-stack      --stack-name sample  --template-body file://cloud_formation.yml
 ```
