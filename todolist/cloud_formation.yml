@@ -8,28 +8,28 @@ Resources:
   DDBT10HT3:
     Type: 'AWS::DynamoDB::Table'
     Properties:
-      TableName: Music
+      TableName: test4
       AttributeDefinitions:
-        - AttributeName: Artist
+        - AttributeName: mid
           AttributeType: S
-        - AttributeName: SongTitle
-          AttributeType: S
-        - AttributeName: AlbumTitle
+        - AttributeName: unixtime
+          AttributeType: N
+        - AttributeName: todo_name
           AttributeType: S
       KeySchema:
-        - AttributeName: Artist
+        - AttributeName: mid
           KeyType: HASH
-        - AttributeName: SongTitle
+        - AttributeName: unixtime
           KeyType: RANGE
       ProvisionedThroughput:
         ReadCapacityUnits: 1
         WriteCapacityUnits: 1
       LocalSecondaryIndexes:
-        - IndexName: AlbumTitleIndex
+        - IndexName: todoIndex
           KeySchema:
-            - AttributeName: Artist
+            - AttributeName: mid
               KeyType: HASH
-            - AttributeName: AlbumTitle
+            - AttributeName: todo_name
               KeyType: RANGE
           Projection:
             ProjectionType: KEYS_ONLY
