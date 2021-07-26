@@ -16,6 +16,20 @@ Resources:
           AttributeType: N
         - AttributeName: todo_name
           AttributeType: S
+        - AttributeName: comment
+          AttributeType: S
+        - AttributeName: start
+          AttributeType: N
+        - AttributeName: start_alarm
+          AttributeType: N
+        - AttributeName: end
+          AttributeType: N
+        - AttributeName: end_alarm
+          AttributeType: N
+        - AttributeName: routine_flag
+          AttributeType: N
+        - AttributeName: delete_flag
+          AttributeType: N
       KeySchema:
         - AttributeName: mid
           KeyType: HASH
