@@ -8,7 +8,7 @@ Resources:
   DDBT10HT3:
     Type: 'AWS::DynamoDB::Table'
     Properties:
-      TableName: test4
+      TableName: test7
       AttributeDefinitions:
         - AttributeName: mid
           AttributeType: S
@@ -21,14 +21,6 @@ Resources:
         - AttributeName: start
           AttributeType: N
         - AttributeName: start_alarm
-          AttributeType: N
-        - AttributeName: end
-          AttributeType: N
-        - AttributeName: end_alarm
-          AttributeType: N
-        - AttributeName: routine_flag
-          AttributeType: N
-        - AttributeName: delete_flag
           AttributeType: N
       KeySchema:
         - AttributeName: mid
@@ -44,6 +36,12 @@ Resources:
             - AttributeName: mid
               KeyType: HASH
             - AttributeName: todo_name
+              KeyType: RANGE
+            - AttributeName: comment
+              KeyType: RANGE
+            - AttributeName: start
+              KeyType: RANGE
+            - AttributeName: start_alarm
               KeyType: RANGE
           Projection:
             ProjectionType: KEYS_ONLY
