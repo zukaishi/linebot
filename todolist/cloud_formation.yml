@@ -16,32 +16,13 @@ Resources:
           AttributeType: N
         - AttributeName: todo_name
           AttributeType: S
-        - AttributeName: comment
-          AttributeType: S
-        - AttributeName: start
-          AttributeType: N
-        - AttributeName: start_alarm
-          AttributeType: N
       KeySchema:
         - AttributeName: mid
           KeyType: HASH
         - AttributeName: unixtime
           KeyType: RANGE
+        - AttributeName: todo_name
+          KeyType: HASH
       ProvisionedThroughput:
-        ReadCapacityUnits: 1
-        WriteCapacityUnits: 1
-      LocalSecondaryIndexes:
-        - IndexName: todoIndex
-          KeySchema:
-            - AttributeName: mid
-              KeyType: HASH
-            - AttributeName: todo_name
-              KeyType: RANGE
-            - AttributeName: comment
-              KeyType: RANGE
-            - AttributeName: start
-              KeyType: RANGE
-            - AttributeName: start_alarm
-              KeyType: RANGE
-          Projection:
-            ProjectionType: KEYS_ONLY
+        ReadCapacityUnits: 1 # 1秒間に何回整合性のある読み取りが可能か
+        WriteCapacityUnits: 1 # 1秒間に何回書き込み可能か
