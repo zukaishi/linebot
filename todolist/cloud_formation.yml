@@ -21,8 +21,16 @@ Resources:
           KeyType: HASH
         - AttributeName: unixtime
           KeyType: RANGE
-        - AttributeName: todo_name
-          KeyType: HASH
       ProvisionedThroughput:
         ReadCapacityUnits: 1 # 1秒間に何回整合性のある読み取りが可能か
         WriteCapacityUnits: 1 # 1秒間に何回書き込み可能か
+      GlobalSecondaryIndexes:
+        - IndexName: todo_name-Index
+          KeySchema:
+            - AttributeName: todo_name
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+          ProvisionedThroughput:
+            ReadCapacityUnits: 1
+            WriteCapacityUnits: 1
