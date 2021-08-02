@@ -1,8 +1,9 @@
+# aws cloudformation create-stack --stack-name stack-$(date +%s) --template-body file://cloud_formation_dynamodb.yml
 Resources:
   DDBT10HT3:
     Type: 'AWS::DynamoDB::Table'
     Properties:
-      TableName: test10
+      TableName: todolist
       AttributeDefinitions:
         - AttributeName: mid
           AttributeType: S
