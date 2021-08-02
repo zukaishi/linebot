@@ -8,13 +8,15 @@ Resources:
   DDBT10HT3:
     Type: 'AWS::DynamoDB::Table'
     Properties:
-      TableName: test7
+      TableName: test8
       AttributeDefinitions:
         - AttributeName: mid
           AttributeType: S
         - AttributeName: unixtime
           AttributeType: N
         - AttributeName: todo_name
+          AttributeType: S
+        - AttributeName: comment
           AttributeType: S
       KeySchema:
         - AttributeName: mid
@@ -29,6 +31,8 @@ Resources:
           KeySchema:
             - AttributeName: todo_name
               KeyType: HASH
+            - AttributeName: comment
+              KeyType: RANGE
           Projection:
             ProjectionType: ALL
           ProvisionedThroughput:
