@@ -1,0 +1,76 @@
+Resources:
+  DDBT10HT3:
+    Type: 'AWS::DynamoDB::Table'
+    Properties:
+      TableName: test10
+      AttributeDefinitions:
+        - AttributeName: mid
+          AttributeType: S
+        - AttributeName: unixtime
+          AttributeType: N
+        - AttributeName: todo_name
+          AttributeType: S
+        - AttributeName: comment
+          AttributeType: S
+        - AttributeName: start
+          AttributeType: N
+        - AttributeName: start_alarm
+          AttributeType: N
+        - AttributeName: end
+          AttributeType: N
+        - AttributeName: end_alarm
+          AttributeType: N
+        - AttributeName: routine_flag
+          AttributeType: N
+      KeySchema:
+        - AttributeName: mid
+          KeyType: HASH
+        - AttributeName: unixtime
+          KeyType: RANGE
+      ProvisionedThroughput:
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1
+      GlobalSecondaryIndexes:
+        - IndexName: todo_name-Index
+          KeySchema:
+            - AttributeName: todo_name
+              KeyType: HASH
+            - AttributeName: comment
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+          ProvisionedThroughput:
+            ReadCapacityUnits: 1
+            WriteCapacityUnits: 1
+        - IndexName: start-Index
+          KeySchema:
+            - AttributeName: start
+              KeyType: HASH
+            - AttributeName: start_alarm
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+          ProvisionedThroughput:
+            ReadCapacityUnits: 1
+            WriteCapacityUnits: 1
+        - IndexName: end-Index
+          KeySchema:
+            - AttributeName: end
+              KeyType: HASH
+            - AttributeName: end_alarm
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+          ProvisionedThroughput:
+            ReadCapacityUnits: 1
+            WriteCapacityUnits: 1
+        - IndexName: routine-Index
+          KeySchema:
+            - AttributeName: routine_flag
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+          ProvisionedThroughput:
+            ReadCapacityUnits: 1
+            WriteCapacityUnits: 1
+
