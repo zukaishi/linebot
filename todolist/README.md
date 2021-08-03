@@ -30,9 +30,7 @@ todo_table
 - https://developers.line.biz/console/　アクセス後ログイン
 - プロバイダの作成
 
-## cloudformationテンプレート検証
+## cloudformation
 ```
-$ aws cloudformation validate-template --template-body file://cloud_formation.yml 
-$ aws cloudformation create-stack      --stack-name sample  --template-body file://cloud_formation.yml 
-$ aws cloudformation update-stack      --stack-name sample  --template-body file://cloud_formation.yml
+$ aws cloudformation create-stack --stack-name stack-$(date +%s) --template-body file://cloud_formation_dynamodb.yml
 ```
