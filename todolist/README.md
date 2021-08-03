@@ -32,5 +32,5 @@ todo_table
 
 ## cloudformation
 ```
-$ aws cloudformation create-stack --stack-name stack-$(date +%s) --template-body file://cloud_formation_dynamodb.yml
+$ aws cloudformation create-stack --stack-name stack-$(date +%s) --template-body file://cloud_formation_dynamodb.yaml
 ```
