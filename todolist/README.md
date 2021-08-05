@@ -34,3 +34,8 @@ todo_table
 ```
 $ aws cloudformation create-stack --stack-name stack-$(date +%s) --template-body file://cloud_formation_dynamodb.yaml
 ```
+
+## api swagger
+- docs/swagger.yaml
+- https://qiita.com/youdays/items/38f15b90402d097fb13e
+- 参考
