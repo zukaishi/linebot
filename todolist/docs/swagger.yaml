@@ -1,19 +1,15 @@
 swagger: "2.0"
 info:
-  description: "This is a sample server Petstore server.  You can find out more about     Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).      For this sample, you can use the api key `special-key` to test the authorization     filters."
-  version: "1.0.0"
-  title: "Swagger Petstore"
-  termsOfService: "http://swagger.io/terms/"
-  contact:
-    email: "apiteam@swagger.io"
-  license:
-    name: "Apache 2.0"
-    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
-host: "petstore.swagger.io"
-basePath: "/v2"
+  version: ""
+  title: "Swagger zukaishi todolist"
 tags:
 - name: "todolist"
-  description: "Everything about your Pets"
+  description: "todo取得"
+  externalDocs:
+    description: "Find out more"
+    url: "http://swagger.io"
+- name: "todo"
+  description: "todo更新"
   externalDocs:
     description: "Find out more"
     url: "http://swagger.io"
@@ -41,20 +37,64 @@ paths:
       responses:
         default:
           description: "successful operation"
-
- 
-securityDefinitions:
-  petstore_auth:
-    type: "oauth2"
-    authorizationUrl: "http://petstore.swagger.io/oauth/dialog"
-    flow: "implicit"
-    scopes:
-      write:pets: "modify pets in your account"
-      read:pets: "read your pets"
-  api_key:
-    type: "apiKey"
-    name: "api_key"
-    in: "header"
+  /todo:
+    post:
+      tags:
+        - "todo"
+      summary: "todoを追加する"
+      description: ""
+      operationId: "todoadd"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: ""
+        required: true
+        schema:
+          $ref: "#/definitions/TodoAdd"
+      responses:
+        default:
+          description: "successful operation"
+    put:
+      tags:
+        - "todo"
+      summary: "todoを修正する"
+      description: ""
+      operationId: "todoupd"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: ""
+        required: true
+        schema:
+          $ref: "#/definitions/TodoUpd"
+      responses:
+        default:
+          description: "successful operation"
+    delete:
+      tags:
+        - "todo"
+      summary: "todoを削除する"
+      description: ""
+      operationId: "tododel"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: ""
+        required: true
+        schema:
+          $ref: "#/definitions/TodoDel"
+      responses:
+        default:
+          description: "successful operation"
 definitions:
   TodoList:
     type: "object"
@@ -66,26 +106,33 @@ definitions:
         format: "int64"
     xml:
       name: "TodoList"
-  Tag:
+  TodoAdd:
     type: "object"
     properties:
-      id:
+      mid:
+        type: "string"
+      routine_flag:
         type: "integer"
         format: "int64"
-      name:
-        type: "string"
     xml:
-      name: "Tag"
-  ApiResponse:
+      name: "TodoAdd"
+  TodoUpd:
     type: "object"
     properties:
-      code:
+      mid:
+        type: "string"
+      routine_flag:
         type: "integer"
-        format: "int32"
-      type:
+        format: "int64"
+    xml:
+      name: "TodoUpd"
+  TodoDel:
+    type: "object"
+    properties:
+      mid:
         type: "string"
-      message:
-        type: "string"
-externalDocs:
-  description: "Find out more about Swagger"
-  url: "http://swagger.io"
+      routine_flag:
+        type: "integer"
+        format: "int64"
+    xml:
+      name: "TodoDel"
