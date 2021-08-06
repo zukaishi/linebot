@@ -101,7 +101,7 @@ definitions:
     properties:
       mid:
         type: "string"
-      routine_flag:
+      unixtime:
         type: "integer"
         format: "int64"
     xml:
@@ -111,7 +111,29 @@ definitions:
     properties:
       mid:
         type: "string"
+      unixtime:
+        type: "integer"
+        format: "int64"
+      todo_name:
+        type: "string"
+      comment:
+        type: "string"
+      start:
+        type: "integer"
+        format: "int64"
+      start_alarm:
+        type: "integer"
+        format: "int64"
+      end:
+        type: "integer"
+        format: "int64"
+      end_alarm:
+        type: "integer"
+        format: "int64"
       routine_flag:
+        type: "integer"
+        format: "int64"
+      delete_flag:
         type: "integer"
         format: "int64"
     xml:
@@ -121,7 +143,29 @@ definitions:
     properties:
       mid:
         type: "string"
+      unixtime:
+        type: "integer"
+        format: "int64"
+      todo_name:
+        type: "string"
+      comment:
+        type: "string"
+      start:
+        type: "integer"
+        format: "int64"
+      start_alarm:
+        type: "integer"
+        format: "int64"
+      end:
+        type: "integer"
+        format: "int64"
+      end_alarm:
+        type: "integer"
+        format: "int64"
       routine_flag:
+        type: "integer"
+        format: "int64"
+      delete_flag:
         type: "integer"
         format: "int64"
     xml:
@@ -131,7 +175,7 @@ definitions:
     properties:
       mid:
         type: "string"
-      routine_flag:
+      unixtime:
         type: "integer"
         format: "int64"
     xml:
