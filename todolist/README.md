@@ -40,5 +40,5 @@ $ aws cloudformation create-stack --stack-name stack-$(date +%s) --template-body
 
 ## CD
 - CodePipeline
-- lambdaへtodolist関数作成
+- lambdaへtodolist、todoadd、toodupd、tododel関数作成
 
