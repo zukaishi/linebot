@@ -37,3 +37,8 @@ $ aws cloudformation create-stack --stack-name stack-$(date +%s) --template-body
 
 ## api swagger
 - https://zukaishi.github.io/linebot/todolist/docs/dist/
+
+## CD
+- CodePipeline
+- lambdaへデプロイする
+
