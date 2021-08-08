@@ -20,6 +20,7 @@ todo_table
 
 ## AWS
 - CloudFormation
+- CodePipline
 - DynamoDB
 - API Gateway
 - Lambda
