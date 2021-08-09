@@ -1,0 +1,37 @@
+# aws cloudformation create-stack --stack-name stack-$(date +%s) --template-body file://cloud_formation_apigateway.yaml
+---
+AWSTemplateFormatVersion: 2010-09-09
+Description: "API Gateway"
+Parameters:
+  FunctionName:
+    Type: String
+    Description: "Lambda Function Name (ex: hello-world)"
+Resources:
+  Api:
+    Type: "AWS::ApiGateway::RestApi"
+    Properties:
+      Name: "api"
+  Resource:
+    Type: "AWS::ApiGateway::Resource"
+    Properties:
+      RestApiId: !Ref Api
+      ParentId: !GetAtt Api.RootResourceId  
+      PathPart: !Sub "${FunctionName}"
+  LambdaPermission:
+    Type: "AWS::Lambda::Permission"
+    Properties:
+      FunctionName: !Sub "${FunctionName}"
+      Action: "lambda:InvokeFunction"
+      Principal: "apigateway.amazonaws.com"
+  ResourceMethod:
+    Type: "AWS::ApiGateway::Method"
+    Properties:
+      RestApiId: !Ref Api
+      ResourceId: !Ref Resource
+      AuthorizationType: "None"
+      HttpMethod: "POST"
+      Integration:
+        Type: "AWS"
+        IntegrationHttpMethod: "POST"
+        Uri: !Sub "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:${FunctionName}/invocations"
+    DependsOn: "LambdaPermission"
