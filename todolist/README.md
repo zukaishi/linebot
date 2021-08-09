@@ -17,9 +17,11 @@ todo_table
 - delete_flag
 
 ## アーキテクト
+![todolist](https://user-images.githubusercontent.com/22611735/128646914-c92323bf-c7e2-48bd-9c51-cfd886c86ff9.jpg)
 
 ## AWS
 - CloudFormation
+- CodePipline
 - DynamoDB
 - API Gateway
 - Lambda
@@ -37,3 +39,8 @@ $ aws cloudformation create-stack --stack-name stack-$(date +%s) --template-body
 
 ## api swagger
 - https://zukaishi.github.io/linebot/todolist/docs/dist/
+
+## CD
+- CodePipeline
+- lambdaへtodolist、todoadd、toodupd、tododel関数作成
+
