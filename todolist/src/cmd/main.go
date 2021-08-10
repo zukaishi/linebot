@@ -1,6 +1,14 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/aws/aws-sdk-go/service/dynamodb"
+)
+
+var db = dynamodb.New(session.New(), aws.NewConfig().WithRegion("ap-northeast-1"))
 
 func main() {
 	hoge()
