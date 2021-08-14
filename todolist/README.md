@@ -25,6 +25,10 @@ todo_table
 - DynamoDB
 - API Gateway
 - Lambda
+- S3 
+
+## 言語
+- PHP (server less php）
 
 ## LINE Bot
 - LINE Bot Designer.appダウンロード
