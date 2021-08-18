@@ -94,6 +94,16 @@ the inconvenience!
 ```
 $ git -C /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core fetch --unshallow
 ```
+```
+remote: Enumerating objects: 710787, done.
+remote: Counting objects: 100% (710732/710732), done.
+remote: Compressing objects: 100% (242323/242323), done.
+remote: Total 700959 (delta 465819), reused 690713 (delta 455771), pack-reused 0
+Receiving objects: 100% (700959/700959), 257.94 MiB | 4.34 MiB/s, done.
+Resolving deltas: 100% (465819/465819), completed with 8215 local objects.
+From https://github.com/Homebrew/homebrew-core
+   c75ce10e8f1..1f30689d7e3 master     -> origin/master
+```
 
 ## CD
 - CodePipeline
