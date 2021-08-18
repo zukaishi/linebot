@@ -105,6 +105,16 @@ From https://github.com/Homebrew/homebrew-core
    c75ce10e8f1..1f30689d7e3 master     -> origin/master
 ```
 
+```
+$ brew update
+$ brew install aws-sam-cli
+```
+```
+Error: python@3.8: the bottle needs the Apple Command Line Tools to be installed.
+  You can install them, if desired, with:
+    xcode-select --install
+```
+
 ## CD
 - CodePipeline
 - lambdaへtodolist、todoadd、toodupd、tododel関数作成
