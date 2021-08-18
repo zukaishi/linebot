@@ -44,6 +44,57 @@ $ aws cloudformation create-stack --stack-name stack-$(date +%s) --template-body
 ## api swagger
 - https://zukaishi.github.io/linebot/todolist/docs/dist/
 
+## SAMインストール
+```
+$ brew tap aws/tap
+$ brew install aws-sam-cli
+```
+
+```
+Error: 
+  homebrew-core is a shallow clone.
+To `brew update`, first run:
+  git -C /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core fetch --unshallow
+This command may take a few minutes to run due to the large size of the repository.
+This restriction has been made on GitHub's request because updating shallow
+clones is an extremely expensive operation due to the tree layout and traffic of
+Homebrew/homebrew-core and Homebrew/homebrew-cask. We don't do this for you
+automatically to avoid repeatedly performing an expensive unshallow operation in
+CI systems (which should instead be fixed to not use shallow clones). Sorry for
+the inconvenience!
+==> Searching for similarly named formulae...
+Error: No similarly named formulae found.
+Error: No available formula or cask with the name "aws-sam-cli".
+==> Searching for a previously deleted formula (in the last month)...
+Warning: homebrew/core is shallow clone. To get its complete history, run:
+  git -C "$(brew --repo homebrew/core)" fetch --unshallow
+
+Error: No previously deleted formula found.
+==> Searching taps on GitHub...
+Error: No formulae found in taps.
+```
+
+```
+$ brew update
+```
+
+```
+Error: 
+  homebrew-core is a shallow clone.
+To `brew update`, first run:
+  git -C /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core fetch --unshallow
+This command may take a few minutes to run due to the large size of the repository.
+This restriction has been made on GitHub's request because updating shallow
+clones is an extremely expensive operation due to the tree layout and traffic of
+Homebrew/homebrew-core and Homebrew/homebrew-cask. We don't do this for you
+automatically to avoid repeatedly performing an expensive unshallow operation in
+CI systems (which should instead be fixed to not use shallow clones). Sorry for
+the inconvenience!
+```
+```
+$ git -C /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core fetch --unshallow
+```
+
 ## CD
 - CodePipeline
 - lambdaへtodolist、todoadd、toodupd、tododel関数作成
