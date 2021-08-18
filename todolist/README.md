@@ -119,6 +119,9 @@ Error: python@3.8: the bottle needs the Apple Command Line Tools to be installed
 $ xcode-select --install
 ```
 
+<img width="474" alt="スクリーンショット 2021-08-19 6 56 30" src="https://user-images.githubusercontent.com/22611735/129977568-44f28bf5-72e7-4c49-ae1c-5ab6b209ff0c.png">
+
+
 ## CD
 - CodePipeline
 - lambdaへtodolist、todoadd、toodupd、tododel関数作成
