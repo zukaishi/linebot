@@ -133,14 +133,10 @@ SAM CLI, version 1.29.0
 - CodePipeline
 - lambdaへtodolist、todoadd、toodupd、tododel関数作成
 ```
-sam package\
-–template-file template.yaml \
-–output-template-file serverless-output.yaml \
-–s3-bucket phpserverless-zukaishi
+sam package \
+  --template-file template.yml \
+  --output-template-file package.yml \
+  --s3-bucket phpserverless-zukaishi
 
-sam deploy \
-–template-file serverless-output.yaml \
-–stack-name my-first-serverless-php-service \
-–capabilities CAPABILITY_IAM
 ```
 
