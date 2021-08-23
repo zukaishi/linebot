@@ -134,5 +134,6 @@ SAM CLI, version 1.29.0
 - lambdaへtodolist、todoadd、toodupd、tododel関数作成
 ```
 sam package --template-file template.yaml  --output-template-file package.yaml          --s3-bucket todolist-phpserverless-zukaishi
+sam deploy --template-file package.yaml --stack-name todolist-phpserverless-zukaishi --capabilities CAPABILITY_IAM
 sam deploy  -–template-file package.yaml   -–stack-name todolist-phpserverless-zukaishi -–capabilities CAPABILITY_IAM
 ```
