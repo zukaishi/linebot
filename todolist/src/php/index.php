@@ -1,4 +1,6 @@
 <?php
+require("index2.php");
+
 $array_test = array(
   '1' => 'apple',
   '2' => 'orange', 

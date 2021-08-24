@@ -6,7 +6,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Description: PHP Webserver
-      CodeUri: s3://todolist-phpserverless-zukaishi/f7f5b47456968757a3c158f0fac89803
+      CodeUri: s3://todolist-phpserverless-zukaishi/dda8f622eb498ea5ea42958799bd612e
       Runtime: provided
       Handler: index.php
       MemorySize: 3008
