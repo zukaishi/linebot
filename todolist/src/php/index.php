@@ -1,5 +1,7 @@
 <?php
 require 'aws/aws-autoloader.php';
+use Aws\DynamoDb\Exception\DynamoDbException;
+use Aws\DynamoDb\Marshaler;
 $array_ini_file = parse_ini_file('credentials.ini', true);
 
 // S3Clientインスタンスの作成
@@ -29,8 +31,7 @@ $result = $s3client->putObject([
     'SourceFile'    => $file,
     'ContentType'   => mime_content_type($file),
 ]);
-
-
+print_r($result);
 */
 
 $dynamodbclient = Aws\DynamoDb\DynamoDbClient::factory([
@@ -41,18 +42,31 @@ $dynamodbclient = Aws\DynamoDb\DynamoDbClient::factory([
   'region' => 'ap-northeast-1',
   'version' => 'latest',
 ]);
+$marshaler = new Marshaler();
+$item = $marshaler->marshalJson('
+    {
+        "mid": "1111111",
+        "unixtime": "1111111",
+        "todo_name": "1111111",
+        "todo_name": "1111111",
+        "todo_name": "1111111",
+        "start_alarm": "1111111",
+        "end": "1111111",
+        "end_alarm": "1111111",
+        "routine_flag": "1111111",
+        "delete_flag": "1111111"
+    }
+');
+$params = [
+    'TableName' => 'todolist',
+    'Item' => $item
+];
 
-$args = array(
-  'TableName' => 'table_name',
-  'Key' => array(
-      'field1' => array('N' => '1201'),
-      'field2' => array('S' => 1),
-  ),
-  'ConsistentRead' => true,
-);
-$result = $dynamodbclient->getItem($args);
+try {
+    $result = $dynamodbclient->putItem($params);
+    echo "Added item: $year - $title\n";
 
-// 結果を表示
-echo('<pre>');
-var_dump($result);
-echo('</pre>');
+} catch (DynamoDbException $e) {
+    echo "Unable to add item:\n";
+    echo $e->getMessage() . "\n";
+}
