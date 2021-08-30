@@ -148,3 +148,46 @@ sam deploy --template-file package.yaml --stack-name todolist-phpserverless-zuka
 {"__type":"com.amazon.coral.validate#ValidationException","message":"One or more parameter values were invalid: Type mis (truncated...)
  ValidationException (client): One or more parameter values were invalid: Type mismatch for key unixtime expected: N actual: S - {"__type":"com.amazon.coral.validate#ValidationException","message":"One or more parameter values were invalid: Type mismatch for key unixtime expected: N actual: S"}
 ```
+カラム名と値が間違えていたため修正
+```
+Aws\Result Object
+(
+    [data:Aws\Result:private] => Array
+        (
+            [@metadata] => Array
+                (
+                    [statusCode] => 200
+                    [effectiveUri] => https://dynamodb.ap-northeast-1.amazonaws.com
+                    [headers] => Array
+                        (
+                            [server] => Server
+                            [date] => Mon, 30 Aug 2021 21:47:42 GMT
+                            [content-type] => application/x-amz-json-1.0
+                            [content-length] => 2
+                            [connection] => keep-alive
+                            [x-amzn-requestid] => 7JL9N7KLO6JPPUB5DSDS0BU2IVVV4KQNSO5AEMVJF66Q9ASUAAJG
+                            [x-amz-crc32] => 2745614147
+                        )
+
+                    [transferStats] => Array
+                        (
+                            [http] => Array
+                                (
+                                    [0] => Array
+                                        (
+                                        )
+
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [monitoringEvents:Aws\Result:private] => Array
+        (
+        )
+
+)
+```
