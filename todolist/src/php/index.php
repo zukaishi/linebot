@@ -45,16 +45,16 @@ $dynamodbclient = Aws\DynamoDb\DynamoDbClient::factory([
 $marshaler = new Marshaler();
 $item = $marshaler->marshalJson('
     {
-        "mid": "1111111",
-        "unixtime": "1111111",
-        "todo_name": "1111111",
-        "todo_name": "1111111",
-        "todo_name": "1111111",
-        "start_alarm": "1111111",
-        "end": "1111111",
-        "end_alarm": "1111111",
-        "routine_flag": "1111111",
-        "delete_flag": "1111111"
+        "mid": "mid",
+        "unixtime": 1,
+        "todo_name": "todo_name",
+        "comment": "comment",
+        "start": 1,
+        "start_alarm": 1,
+        "end": 1,
+        "end_alarm": 1,
+        "routine_flag": 1,
+        "delete_flag": 1
     }
 ');
 $params = [
@@ -64,8 +64,7 @@ $params = [
 
 try {
     $result = $dynamodbclient->putItem($params);
-    echo "Added item: $year - $title\n";
-
+    print_r($result);
 } catch (DynamoDbException $e) {
     echo "Unable to add item:\n";
     echo $e->getMessage() . "\n";
