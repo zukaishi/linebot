@@ -136,3 +136,11 @@ SAM CLI, version 1.29.0
 sam package --template-file template.yaml  --output-template-file package.yaml          --s3-bucket todolist-phpserverless-zukaishi
 sam deploy --template-file package.yaml --stack-name todolist-phpserverless-zukaishi --capabilities CAPABILITY_IAM
 ```
+
+## dynamodb書き込み
+```
+"__type":"com.amazon.coral.service#AccessDeniedException","Message":"User: arn:aws:iam::431928468872:user/aws-teraform- (truncated...)
+ AccessDeniedException (client): User: arn:aws:iam::431928468872:user/aws-teraform-s3 is not authorized to perform: dynamodb:PutItem on resource: arn:aws:dynamodb:ap-northeast-1:431928468872:table/todolist - {"__type":"com.amazon.coral.service#AccessDeniedException","Message":"User: arn:aws:iam::431928468872:user/aws-teraform-s3 is not authorized to perform: dynamodb:PutItem on resource: arn:aws:dynamodb:ap-northeast-1:431928468872:table/todolist"}
+ ```
+ credentials.ini　指定を間違えていたため修正
+ 
