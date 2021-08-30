@@ -144,3 +144,7 @@ sam deploy --template-file package.yaml --stack-name todolist-phpserverless-zuka
  ```
  credentials.ini　指定を間違えていたため修正
  
+```
+{"__type":"com.amazon.coral.validate#ValidationException","message":"One or more parameter values were invalid: Type mis (truncated...)
+ ValidationException (client): One or more parameter values were invalid: Type mismatch for key unixtime expected: N actual: S - {"__type":"com.amazon.coral.validate#ValidationException","message":"One or more parameter values were invalid: Type mismatch for key unixtime expected: N actual: S"}
+```
