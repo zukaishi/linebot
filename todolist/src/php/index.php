@@ -42,25 +42,34 @@ $dynamodbclient = Aws\DynamoDb\DynamoDbClient::factory([
 
 try {
   $marshaler = new Marshaler();
+  /*
   $item = $marshaler->marshalJson('
-      {
-          "mid": "mid",
-          "unixtime": 1,
-          "todo_name": "todo_name",
-          "comment": "comment",
-          "start": 1,
-          "start_alarm": 1,
-          "end": 1,
-          "end_alarm": 1,
-          "routine_flag": 1,
-          "delete_flag": 1
-      }
+    {
+      "mid": "mid",
+      "unixtime": 1,
+      "todo_name": "todo_name",
+      "comment": "comment",
+      "start": 1,
+      "start_alarm": 1,
+      "end": 1,
+      "end_alarm": 1,
+      "routine_flag": 1,
+      "delete_flag": 1
+    }
+  ');
+  */
+  $item = $marshaler->marshalJson('
+    {
+        "mid": "mid",
+        "unixtime": 1
+    }
   ');
   $params = [
-      'TableName' => 'todolist',
-      'Item' => $item
+    'TableName' => 'todolist',
+    'Item' => $item
   ];
-  $result = $dynamodbclient->putItem($params);
+  //$result = $dynamodbclient->putItem($params);
+  $result = $dynamodbclient->getItem($params);
   print_r($result);
 } catch (DynamoDbException $e) {
   echo "Unable to add item:\n";
