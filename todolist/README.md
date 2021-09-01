@@ -205,3 +205,12 @@ Stack trace:
 #5 /Users/hishizuka/Work/git/linebot/todoli in /Users/hishizuka/Work/git/linebot/todolist/src/php/aws/Aws/Api/Validator.php on line 65
 ```
 ここでまた躓く
+
+```
+ $params = [
+    'ConsistentRead' => true,
+    'TableName' => 'todolist',
+    'Key' => $item
+  ];
+```
+Key が Itemになっていたためだった
