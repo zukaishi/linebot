@@ -57,7 +57,13 @@ try {
       "delete_flag": 1
     }
   ');
+   $params = [
+    'TableName' => 'todolist',
+    'Item' => $item
+  ];
+  $result = $dynamodbclient->putItem($params);
   */
+
   $item = $marshaler->marshalJson('
     {
         "mid": "mid",
@@ -65,10 +71,10 @@ try {
     }
   ');
   $params = [
+    'ConsistentRead' => true,
     'TableName' => 'todolist',
-    'Item' => $item
+    'Key' => $item
   ];
-  //$result = $dynamodbclient->putItem($params);
   $result = $dynamodbclient->getItem($params);
   print_r($result);
 } catch (DynamoDbException $e) {
