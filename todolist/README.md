@@ -191,3 +191,17 @@ Aws\Result Object
 
 )
 ```
+
+getitem
+```
+Fatal error: Uncaught InvalidArgumentException: Found 1 error while validating the input provided for the GetItem operation:
+[Key] is missing and is a required parameter in /Users/hishizuka/Work/git/linebot/todolist/src/php/aws/Aws/Api/Validator.php:65
+Stack trace:
+#0 /Users/hishizuka/Work/git/linebot/todolist/src/php/aws/Aws/Middleware.php(78): Aws\Api\Validator->validate('GetItem', Object(Aws\Api\StructureShape), Array)
+#1 /Users/hishizuka/Work/git/linebot/todolist/src/php/aws/Aws/IdempotencyTokenMiddleware.php(77): Aws\Middleware::Aws\{closure}(Object(Aws\Command), NULL)
+#2 /Users/hishizuka/Work/git/linebot/todolist/src/php/aws/Aws/AwsClientTrait.php(64): Aws\IdempotencyTokenMiddleware->__invoke(Object(Aws\Command))
+#3 /Users/hishizuka/Work/git/linebot/todolist/src/php/aws/Aws/AwsClientTrait.php(58): Aws\AwsClient->executeAsync(Object(Aws\Command))
+#4 /Users/hishizuka/Work/git/linebot/todolist/src/php/aws/Aws/AwsClientTrait.php(86): Aws\AwsClient->execute(Object(Aws\Command))
+#5 /Users/hishizuka/Work/git/linebot/todoli in /Users/hishizuka/Work/git/linebot/todolist/src/php/aws/Aws/Api/Validator.php on line 65
+```
+ここでまた躓く
